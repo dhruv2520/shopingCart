@@ -1,21 +1,36 @@
 import { Schema, model } from "mongoose";
 
-const webhookSchema = new Schema({
-  amount: {
-    type: String,
-    required: true,
+const webhookSchema = new Schema(
+  {
+    id: {
+      type: String,
+      require: true,
+    },
+    amount_total: {
+      type: String,
+      require: true,
+    },
+    amount_subtotal: {
+      type: String,
+      require: true,
+    },
+    customer_details: {
+      type: String,
+      require: true,
+    },
+    automatic_tax: {
+      type: String,
+      require: true,
+    },
+    currency: {
+      type: String,
+      require: true,
+    },
+    expires_at: {
+      type: String,
+      require: true,
+    },
   },
-  productName: {
-    type: String,
-    required: true,
-  },
-  paymentMethod: {
-    type: String,
-    required: true,
-  },
-  isCheckout: {
-    type: Boolean,
-    default: false,
-  },
-});
+  { timestamps: true, versionKey: false }
+);
 export const webhookModel = model("webhook", webhookSchema);

@@ -9,6 +9,9 @@ const paymentSchema = new Schema(
     userId: {
       type: Schema.Types.ObjectId,
     },
+    productId: {
+      type: Schema.Types.ObjectId,
+    },
   },
   { timestamps: true, versionKey: false }
 );

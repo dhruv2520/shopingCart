@@ -8,6 +8,9 @@ const cartSchema = new Schema(
     userId: {
       type: Schema.Types.ObjectId,
     },
+    amount: {
+      type: Number,
+    },
     isCheckout: {
       type: Boolean,
       default: false,
