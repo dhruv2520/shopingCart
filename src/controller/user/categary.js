@@ -4,7 +4,16 @@ export class categoryController {
   static getCategory = async (req, res) => {
     let id = req.params.id;
     try {
-      const data = await categoryModel.find({ _id: id });
+      const data = await categoryModel.aggregate([
+        {
+          $lookup: {
+            from: "subcategories",
+            localField: "subCategoryId",
+            foreignField: "_id",
+            as: "category",
+          },
+        }
+      ])
 
       if (!data == data)
         res.status(400).send({ message: "category  not avalibal" });
@@ -18,3 +27,4 @@ export class categoryController {
     }
   };
 }
+

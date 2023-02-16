@@ -10,10 +10,6 @@ const webhookSchema = new Schema(
       type: String,
       require: true,
     },
-    amount_subtotal: {
-      type: String,
-      require: true,
-    },
     customer_details: {
       type: String,
       require: true,

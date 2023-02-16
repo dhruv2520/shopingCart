@@ -3,12 +3,11 @@ import {categoryModel } from "../../model/admin/category.js";
 
 export class categoryController { 
     static addCategory = async (req, res) => {
-     const {categoryName,brandId,productId}= req.body
+     const {categoryName,subCategoryId}= req.body
      try {
           const data = await categoryModel.create({
             categoryName:categoryName,
-            brandId:brandId,
-            productId:productId
+            subCategoryId:subCategoryId,
           })
          if (data) res.status(200).send({message: "category Successfully Added"})
          else return res.status(400).send({message: "Add category Error In Database"})

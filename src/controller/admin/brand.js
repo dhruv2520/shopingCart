@@ -5,8 +5,6 @@ export class brandController {
     const { productId, categoryId, brandName } = req.body;
     try {
       const data = await brandModel.create({
-        productId: productId,
-        categoryId: categoryId,
         brandName: brandName,
       });
       if (data) res.status(200).send({ message: "brand Successfully Added" });
