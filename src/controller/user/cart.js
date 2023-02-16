@@ -2,6 +2,7 @@ import { cartModel } from "../../model/user/cart.js";
 import { userModel } from "../../model/user/login.js";
 import { productModel } from "../../model/admin/product.js";
 import mongoose from "mongoose";
+import { ObjectID } from "bson";
 
 export class cartController {
   static addToCart = async (req, res) => {
@@ -89,16 +90,49 @@ export class cartController {
     }
   };
 
-  static deleteCart = async (req, res) => {
-    let id = req.params.id;
+  // static deleteCart = async (req, res) => {
+  //   let id = req.params.productId;
+  //   console.log('id :>> ', req.params.productId);
+  //   try {
+  //     let response = await cartModel.findOneAndDelete({ id: id[0].ObjectId });
+  //     console.log('response :>> ', { id: id[0].ObjectId });
+  //     if (response) {
+  //       return res.status(200).send({ message: "comment Successfully Delete" });
+  //     }
+ 
+  //     return res.status(404).send({ message: "cart can not delete"});
+  //     console.log('message :>> ',message );
+  //   } catch (error) {
+  //     console.log('error :>> ', error);
+  //     return res.status(500).send({ message: "Internal Server Error" });
+  //   }
+  // };
+
+ static deleteCart = async (req, res) => {
+    console.log("hi :>> ");
     try {
-      let response = await cartModel.findOneAndDelete({ productId: id });
-      if (response) {
-        return res.status(200).send({ message: "comment Successfully Delete" });
+      const findCart = await cartModel.findOne({ _id: req.params.id });
+      const productId = await productModel.findOne({ _id: req.body.productId });
+      console.log("productId :>> ", productId);
+      console.log(" findCart:>> ", findCart);
+      if (findCart.productId.includes(req.body.productId)) {
+        const index = findCart.productId.indexOf(ObjectId(productId));
+        console.log("index :>> ", index);
+        if (index !== -1) {
+          findCart.productId.splice(index, 1);
+        }
+      } else {
+        throw new Error("product not found");
       }
-      return res.status(404).send({ message: "cart can not delete" });
+      let cartUp = await cartModel.findOneAndUpdate(
+        { _id: req.params.id },
+        findCart
+      );
+      if (!cartUp) throw new Error("not found");
+      res.send({ success: "true" });
+      console.log("cartUp :>> ", cartUp);
     } catch (error) {
-      return res.status(500).send({ message: "Internal Server Error" });
+      console.log("error :>> ", error);
     }
   };
 }
