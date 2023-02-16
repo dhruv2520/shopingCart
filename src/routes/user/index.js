@@ -7,6 +7,7 @@ import brandRouter from "./brand.js";
 import categoryRoutes from "./category.js";
 import wishlistRouter from "./wislist.js";
 import paymentRouter from "./payment.js";
+import subCetegoryRouter from "./subCategory.js";
 
 import { Router } from "express";
 
@@ -20,4 +21,5 @@ router.use("/comment", commentRoutes);
 router.use("/cart", cartRoutes);
 router.use("/category", categoryRoutes);
 router.use("/wishlist", wishlistRouter);
+router.use("/subCategory", subCetegoryRouter);
 export default router;

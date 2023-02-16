@@ -95,7 +95,7 @@ export class paymentController {
       // if (!checkCart) {
       //   return await res.status(402).send("Not Found");
       // }
-      if (data) return res.status(200).send({ message: "Successfully", url });
+      if (data) return res.status(200).send({ message: "Successfully", data });
     } catch (error) {
       console.log("error:>>>", error);
       return res.status(500).send({ message: "Internal Server Error" });
