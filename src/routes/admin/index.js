@@ -7,7 +7,7 @@ import brandRoutes from "./brand.js";
 import paymentRoutes from "./payment.js";
 import subCategoryRoutes from "./subCategory.js";
 import nodemailerRoutes from "./nodemiler.js";
-
+import userRoutes from "./user.js";
 import { Router } from "express";
 const router = Router();
 router.use("/subCategory", subCategoryRoutes);
@@ -19,5 +19,5 @@ router.use("/category", categoryRoutes);
 router.use("/product", productRoutes);
 router.use("/comment", commentRoutes);
 router.use("/nodemailer", nodemailerRoutes);
-
+router.use("/user", userRoutes);
 export default router;

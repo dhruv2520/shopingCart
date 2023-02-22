@@ -16,14 +16,14 @@ export class nodemailerController {
         from: "pinal.igenerate@gmail.com",
         to: body.to,
         subject: body.subject,
-        text: body,
-        text,
+        text: body.text,
+        cc: body.cc,
       };
       transporter.sendMail(mailOptions, function (err, success) {
         if (err) {
           console.log(err);
         } else {
-          res.status(200).send({ message: "successfuly" });
+          res.status(200).send({ message: " email successfuly" });
         }
       });
     } catch (error) {

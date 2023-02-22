@@ -2,7 +2,7 @@ import { cartModel } from "../../model/user/cart.js";
 import { userModel } from "../../model/user/login.js";
 import { productModel } from "../../model/admin/product.js";
 import mongoose from "mongoose";
-import { ObjectID } from "bson";
+const ObjectId = mongoose.Types.ObjectId;
 
 export class cartController {
   static addToCart = async (req, res) => {
@@ -99,7 +99,7 @@ export class cartController {
   //     if (response) {
   //       return res.status(200).send({ message: "comment Successfully Delete" });
   //     }
- 
+
   //     return res.status(404).send({ message: "cart can not delete"});
   //     console.log('message :>> ',message );
   //   } catch (error) {
@@ -108,7 +108,7 @@ export class cartController {
   //   }
   // };
 
- static deleteCart = async (req, res) => {
+  static deleteCart = async (req, res) => {
     console.log("hi :>> ");
     try {
       const findCart = await cartModel.findOne({ _id: req.params.id });

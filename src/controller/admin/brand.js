@@ -2,7 +2,7 @@ import { brandModel } from "../../model/user/brand.js";
 
 export class brandController {
   static addBrand = async (req, res) => {
-    const { productId, categoryId, brandName } = req.body;
+    const { brandName } = req.body;
     try {
       const data = await brandModel.create({
         brandName: brandName,
