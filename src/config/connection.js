@@ -3,7 +3,6 @@ import { connect, set } from "mongoose";
 export const Connection = () => {
   const dataBase_URL = process.env.DATABASE_URL;
   try {
-    set("strictQuery", false);
     connect(dataBase_URL);
     console.log("Database connection Successful");
   } catch (error) {

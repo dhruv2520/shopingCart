@@ -12,7 +12,7 @@ import filleUplod from "express-fileupload";
 // }
 Connection();
 const app = express();
-
+// console.log('process.env. :>> ', process.env.PORT);
 const port = process.env.PORT;
 app.use("uploads", express.static("./uploads"));
 app.use(filleUplod());

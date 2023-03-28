@@ -7,24 +7,20 @@ const webhookSchema = new Schema(
       require: true,
     },
     amount_total: {
+      type: Number,
+      require: true,
+    },
+    payment_status: {
       type: String,
       require: true,
     },
-    customer_details: {
-      type: String,
-      require: true,
-    },
-    automatic_tax: {
-      type: String,
-      require: true,
-    },
+
     currency: {
       type: String,
       require: true,
     },
-    expires_at: {
-      type: String,
-      require: true,
+    body: {
+      type: Object,
     },
   },
   { timestamps: true, versionKey: false }

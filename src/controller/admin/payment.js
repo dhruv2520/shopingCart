@@ -13,12 +13,12 @@ export class paymentController {
           },
         },
       ]);
-      if (data)
-        res.status(200).send({ message: "payment Successfully get", data });
-      else
-        return res
-          .status(400)
-          .send({ message: "get payment Error In Database" });
+        if (data)
+          res.status(200).send({ message: "payment Successfully get", data });
+        else
+          return res
+            .status(400)
+            .send({ message: "get payment Error In Database" });
     } catch (error) {
       console.log("ele :>>>>>>>>>>>>>>>> ", error);
       return res.status(500).send({ message: "Internal Server Error" });

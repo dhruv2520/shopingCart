@@ -83,7 +83,7 @@ export class cartController {
           },
         },
       ]);
-      console.log("cartdata :>> ", cartdata);
+      // console.log("cartdata :>> ", cartdata);
       return res.status(200).send({ cartData });
     } catch (error) {
       console.log("error :>> ", error);

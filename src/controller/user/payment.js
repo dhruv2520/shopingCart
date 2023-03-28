@@ -1,5 +1,4 @@
 import stripe from "stripe";
-import { paymentModel } from "../../model/user/payment.js";
 import { webhookModel } from "../../model/user/webhook.js";
 import { cartModel } from "../../model/user/cart.js";
 import mongoose from "mongoose";
@@ -12,7 +11,7 @@ export class paymentController {
     // console.log("str :>> ", str);
     try {
       let { userId, productId, cartId } = req.body;
-      if (!userId) throw new Error("Please enter valid data");
+      if (!req.body) throw new Error("Please enter valid data");
 
       const cartData = await cartModel.aggregate([
         {
@@ -71,29 +70,23 @@ export class paymentController {
     try {
       const data = await webhookModel.create({
         id: body.data.object.id,
-        amount_total: body.data.object.amount_total/100,
+        amount_total: body.data.object.amount_total / 100,
         currency: body.data.object.currency,
+        body: body.data.object,
       });
       console.log("data :>> ", data);
-      //console.log("body.metadata.cartId  :>> ", body.metadata.cartId);
-      const checkCart = await cartModel.findOneAndUpdate(
-        { _id: body.data.object.metadata.cartId },
-        {
-          isCheckout: true,
-        }
-      );
-      const findCart = await cartModel.findOne({
-        _id: checkCart,
-      });
-      if (!checkCart) {
-        return await res.status(402).send("Not Found");
+      if (data.payment_status == "unpaid") {
+        const checkCart = await cartModel.findOneAndUpdate(
+          { _id: body.data.object.metadata.cartId },
+          {
+            isCheckout: true,
+          }
+        );
       }
-      if (data)
-        return res
-          .status(200)
-          .send({ message: "Successfully", data, findCart });
+      return res.status(200).send({ message: "Successfully", data });
     } catch (error) {
       console.log("error:>>>", error);
       return res.status(500).send({ message: "Internal Server Error" });
     }
-  };}
+  };
+}

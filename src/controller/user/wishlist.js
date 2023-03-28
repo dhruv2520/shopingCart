@@ -3,6 +3,7 @@ export class wishlistController {
 
     static addWishlist= async (req, res) => {
             try {
+
             const {userId,productId}  = req.body
                  const data = await wishlistModel.create({
                     userId:userId,

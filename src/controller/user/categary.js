@@ -12,8 +12,8 @@ export class categoryController {
             foreignField: "_id",
             as: "category",
           },
-        }
-      ])
+        },
+      ]);
 
       if (!data == data)
         res.status(400).send({ message: "category  not avalibal" });
@@ -27,4 +27,3 @@ export class categoryController {
     }
   };
 }
-

@@ -4,14 +4,14 @@ export class brandController {
   static getBrand = async (req, res, next) => {
     try {
       const data = await brandModel.aggregate([
-        {
-          $lookup: {
-            from: "categories",
-            localField: "categoryId",
-            foreignField: "_id",
-            as: "categorey",
-          },
-        },
+        // {
+        // $lookup: {
+        //   from: "categories",
+        //   localField: "categoryId",
+        //   foreignField: "_id",
+        //   as: "categorey",
+        // },
+        // },
         {
           $lookup: {
             from: "products",
